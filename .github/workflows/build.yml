@@ -14,7 +14,7 @@ jobs:
       max-parallel: 1
       matrix:
         python-version:
-        - '3.10'
+        - '3.8'
         - '3.11'
     name: Build with Python ${{ matrix.python-version }}
     steps:
@@ -32,8 +32,12 @@ jobs:
       - name: Test with tox
         env:
           JWT_CONFIG_BASE_64: ${{ secrets.JWT_CONFIG_BASE_64 }}
+          ADMIN_USER_ID: ${{ secrets.ADMIN_USER_ID }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          USER_ID: ${{ secrets.USER_ID }}
+          ENTERPRISE_ID: ${{ secrets.ENTERPRISE_ID }}
         run: |
-          echo $JWT_CONFIG_BASE_64 | md5sum
           tox
         
   coverage:
