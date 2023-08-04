@@ -56,8 +56,6 @@ jobs:
           python -m pip install -e .[dev]
           python -m pip install coveralls
       - name: Send coverage report to Coveralls
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           tox -e coverage
           coveralls --service=github
