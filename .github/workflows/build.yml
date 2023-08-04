@@ -34,6 +34,8 @@ jobs:
           python -m pip install tox-gh-actions
       - name: Test with tox
         run: tox
+        env:
+          JWT_CONFIG_BASE_64: ${{ secrets.JWT_CONFIG_BASE_64 }}
   coverage:
     name: Coverage report
     runs-on: ubuntu-20.04
