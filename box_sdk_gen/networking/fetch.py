@@ -1,3 +1,4 @@
+import copy
 import io
 from datetime import datetime
 
@@ -104,6 +105,8 @@ def fetch(url: str, options: FetchOptions) -> FetchResponse:
     response = APIResponse()
 
     while True:
+        if options.file_stream:
+            options.file_stream.seek(0)
         request: APIRequest = __prepare_request(
             url=url, options=options, reauthenticate=response.reauthentication_needed
         )
